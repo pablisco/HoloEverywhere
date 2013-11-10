@@ -1,0 +1,18 @@
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+configurations {
+	indexer
+}
+
+dependencies {
+	indexer 'org.sonatype.nexus:nexus-indexer:3.1-M1:cli@jar'
+}
+
+task build(type: JavaExec) {
+	classpath = configurations.indexer
+	main = 'org.sonatype.nexus.index.cli.NexusIndexerCli'
+	args '-t', 'full', '-r', "${project.projectDir}", '-i', "${project.projectDir}/.index", '-d', "${project.projectDir}/.index", '-n', 'holoeverywhere'
+}
