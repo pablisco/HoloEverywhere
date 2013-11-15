@@ -1,162 +1,57 @@
-# ActionBar-PullToRefresh
+![HoloEverywhere](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/github-res/logo.png "HoloEverywhere")
 
-![ActionBar-PullToRefresh](https://github.com/chrisbanes/ActionBar-PullToRefresh/raw/master/header.png)
+[![Build Status](https://travis-ci.org/Prototik/HoloEverywhere.png?branch=master)](https://travis-ci.org/Prototik/HoloEverywhere)
 
-ActionBar-PullToRefresh provides an easy way to add a modern version of the pull-to-refresh interaction to your application.
+## What is it?
+Bringing Holo Theme from Android 4.1 to 2.1 and above.
+## Links
+[![Demo APK](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/github-res/demo_button.png)][Demo APK]  
+[![Donate](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/github-res/donate_button.png)][Donate]
 
-Please note that this is __not__ an update to [Android-PullToRefresh](https://github.com/chrisbanes/Android-PullToRefresh), this has been created from new. You should think of this as Android-PullToRefresh's younger, leaner cousin.
+## How to use?
+### [Eclipse](https://github.com/Prototik/HoloEverywhere/wiki/Import-in-IDE#eclipse)
+### [Android Studio / IntelliJ IDEA](https://github.com/Prototik/HoloEverywhere/wiki/Import-in-IDE#android-studio--intellij-idea)
+### [Maven](https://github.com/Prototik/HoloEverywhere/wiki/Import-in-IDE#maven)
 
-### This is a Preview
-Please note that this is currently in a preview state. This basically means that the API is not fixed and you should expect changes between releases.
+## Screenshots
+![Screenshot 1](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/1.png "Screenshot 1")
+![Screenshot 2](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/2.png "Screenshot 2")
+![Screenshot 3](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/3.png "Screenshot 3")
+![Screenshot 4](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/4.png "Screenshot 4")
+![Screenshot 5](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/5.png "Screenshot 5")
+![Screenshot 6](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/6.png "Screenshot 6")
+![Screenshot 7](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/7.png "Screenshot 7")
+![Screenshot 8](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/8.png "Screenshot 8")
+![Screenshot 9](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/9.png "Screenshot 9")
+![Screenshot 10](https://github.com/Prototik/HoloEverywhere/raw/gh-pages/img/screenshots/10.png "Screenshot 10")
 
----
+## Featured implementations
+ * [Project Euler](https://play.google.com/store/apps/details?id=ie.cathalcoffey.android.projecteuler)
+ * [TimeAct To-Do](https://play.google.com/store/apps/details?id=timeact.app.task.manager)
+ * [UnixAdmin](https://play.google.com/store/apps/details?id=org.kidinov.unixadmin)
+ * [AppSales. Best Apps on Sale](https://play.google.com/store/apps/details?id=net.tsapps.appsales)
+ * [Meditation Assistant](https://play.google.com/store/apps/details?id=sh.ftp.rocketninelabs.meditationassistant)
+ * [Ragnabase MVP](https://play.google.com/store/apps/details?id=com.ragnabase.mvp)
+ * [noodles - To Do List](https://play.google.com/store/apps/details?id=com.makeramen.noodles)
+ * [otoMoto](https://play.google.com/store/apps/details?id=pl.otomoto)
+ * [AndroidPIT](https://play.google.com/store/apps/details?id=de.androidpit.app)
 
-## Sample Apps
+Write to [Sergey](mailto:prototypegamez@gmail.com) for add your application to this list.
 
-There are two sample applications, the stock sample which uses the standard library and is therefore has a `minSdkVersion` of 14. There is also a sample which uses the ActionBarSherlock extra so has a `minSdkVersion` of 7.
+## Contact
 
-### Stock Sample
-[![Get it on Google Play](http://www.android.com/images/brand/get_it_on_play_logo_small.png)](http://play.google.com/store/apps/details?id=uk.co.senab.actionbarpulltorefresh.samples.stock)
-
-### ActionBarSherlock Sample
-[![Get it on Google Play](http://www.android.com/images/brand/get_it_on_play_logo_small.png)](http://play.google.com/store/apps/details?id=uk.co.senab.actionbarpulltorefresh.samples.actionbarsherlock)
-
-## Video
-
-[![Sample Video](http://img.youtube.com/vi/YOYtPF-4RPg/0.jpg)](https://www.youtube.com/watch?v=YOYtPF-4RPg)
-
----
-
-## Supported Views
-
-ActionBar-PullToRefresh has in-built support for:
-
- * AbsListView derivatives (ListView & GridView).
- * ScrollView
- * WebView
-
-If the View you want to use is not listed above, you can easily add support in your own code by providing a `ViewDelegate`. See the `ViewDelegate` section below for more info.
-
----
-
-## Usage
-
-There are two ways to use this library.
-
-### PullToRefreshAttacher only
-
-This is the simplest method, as it's just two lines of code. You just need to create an instance of `PullToRefreshAttacher`, giving it the Activity and the View for which will scroll.
-
-``` java
-private PullToRefreshAttacher mPullToRefreshAttacher;
-
-@Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-        
-    // Get View for which the user will scroll…
-    View scrollableView = findViewById(R.id.blah); 
-
-    // Create a PullToRefreshAttacher instance
-    mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
-
-    // Add the Refreshable View and provide the refresh listener
-    mPullToRefreshAttacher.addRefreshableView(scrollableView, this);
-}
-```
-See the [ListView](samples/stock/src/uk/co/senab/actionbarpulltorefresh/samples/stock/ListViewActivity.java) sample for more info.
-
-### PullToRefreshLayout
-
-Using a `PullToRefreshLayout` gives the library better control over the touch events, and should be used if you find that using the above method is not working correctly.
-
-Examples of when you would use `PullToRefreshLayout` are:
-
-* Clickable view with refreshable View
-* Not being able to pull from 'empty' space within the refreshable view.
-
-The first thing you need to do is wrap your refreshable view in a `PullToRefreshLayout`:
-
-```xml
-<uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ptr_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-    
-    <!-- Your content, here we're using a ScrollView -->
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-            
-    </ScrollView>
-
-</uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout>
-```
-
-Then in your Activity, get a `PullToRefreshAttacher` and give it to the `PullToRefreshLayout`, along with the `OnRefreshListener`.
-
-``` java
-private PullToRefreshAttacher mPullToRefreshAttacher;
-
-@Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-        
-    // Create a PullToRefreshAttacher instance
-    mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
-
-    // Retrieve the PullToRefreshLayout from the content view
-    PullToRefreshLayout ptrLayout = (PullToRefreshLayout) findViewById(R.id.ptr_layout);
-
-    // Give the PullToRefreshAttacher to the PullToRefreshLayout, along with a refresh listener.
-    ptrLayout.setPullToRefreshAttacher(mPullToRefreshAttacher, this);
-    
-}
-```
-See the [ScrollView](samples/stock/src/uk/co/senab/actionbarpulltorefresh/samples/stock/ScrollViewActivity.java) sample for more info.
-
---
-
-## Fragments
-
-One thing to note is that the `PullToRefreshAttacher` **needs** to be created in the `onCreate()` phase of the Activity. If you plan on using this library with Fragments then the best practice is for your Activity to create the `PullToRefreshAttacher`, and then have your fragments retrieve it from the Activity.
-
-An example is provided in the [Fragment & Tabs](samples/stock/src/uk/co/senab/actionbarpulltorefresh/samples/stock/FragmentTabsActivity.java) sample.
-
-## Customisation
-
-See the [Customisation](Customisation.md) page for more information.
-
-## Gradle
-
-Action Bar is now pushed to Maven Central as a AAR, so you just need to add the following dependency to your `build.gradle`.
-    
-    dependencies {
-        compile 'com.github.chrisbanes.actionbarpulltorefresh:library:0.8'
-    }
-    
-Or if you are using one of the ActionBarSherlock or ActionBarCompat extras, you would use the following:
-
-    dependencies {
-        // Use ONE of the following, depending on which library you are using
-        compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abc:0.8'
-        compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abs:0.8'
-    }
+Sergey:
+  * [Email](mailto:prototypegamez@gmail.com "Send email to Sergey")
+  * [Google Plus](https://plus.google.com/103272077758668000975/posts "Google Plus")
+  * [Habrahabr](http://habrahabr.ru/users/prototik/)
+  
+Christophe:
+  * [Google Plus](https://plus.google.com/108315424589085456181/posts "Google Plus")
 
 ## License
+MIT License, full text of license see [here][License]
 
-    Copyright 2013 Chris Banes
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+[Demo APK]: https://raw.github.com/Prototik/HoloEverywhere/repo/org/holoeverywhere/demo/2.1.0/demo-2.1.0.apk "Demo APK"
+[Donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X7E7U7HNR36YN&lc=US&item_name=HoloEverywhere&currency_code=USD&bn=PP%2dDonationsBF%3adonate_button%2epng%3aNonHosted "Donate"
+[Build with Maven]: https://github.com/Prototik/HoloEverywhere/wiki/Maven "Build with maven"
+[License]: https://raw.github.com/Prototik/HoloEverywhere/master/LICENSE "MIT License"
